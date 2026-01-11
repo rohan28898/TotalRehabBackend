@@ -12,7 +12,10 @@ const db = mysql.createConnection({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME
+  database: process.env.DB_NAME,
+  ssl: {
+    ca: require("fs").readFileSync(process.env.CA)
+  }
 });
 
 db.connect((err) => {
@@ -21,6 +24,10 @@ db.connect((err) => {
     return;
   }
   console.log(" Database connected");
+});
+
+app.get("/", (req, res) => {
+  res.send("Hello from server");
 });
 
 app.post("/invoice", (req, res) => {
