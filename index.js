@@ -18,13 +18,17 @@ const db = mysql.createConnection({
   }
 });
 
+let isconnected = false;
+if (!isconnected){
 db.connect((err) => {
   if (err) {
     console.error(" Database connection failed:", err);
     return;
   }
   console.log(" Database connected");
+  isconnected = true;
 });
+}
 
 app.get("/", (req, res) => {
   res.send("Hello from server");
@@ -151,6 +155,7 @@ app.put("/invoice/:id", (req, res) => {
 });
 
 
-app.listen(3001, () => {
-    console.log('server is running on 3001');
-})
+module.exports = app
+// app.listen(3001, () => {
+//     console.log('server is running on 3001');
+// })
