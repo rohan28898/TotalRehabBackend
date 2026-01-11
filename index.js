@@ -155,7 +155,7 @@ app.put("/invoice/:id", (req, res) => {
 });
 
 
-module.exports = app
-// app.listen(3001, () => {
-//     console.log('server is running on 3001');
-// })
+//module.exports = app
+app.listen(3001, () => {
+    console.log('server is running on 3001');
+})
